@@ -1,9 +1,7 @@
 package com.user.service.domain.entity;
 
 import com.user.service.domain.enums.Gender;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +20,7 @@ public class User extends BaseEntity{
     @Column(name = "email")
     private String email;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender = Gender.UNSPECIFIED;
 
