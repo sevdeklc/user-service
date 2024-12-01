@@ -1,7 +1,11 @@
 package com.user.service.domain.entity;
 
 import com.user.service.domain.enums.Gender;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "tbl_user")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     @Column(name = "first_name")
     private String firstName;

@@ -1,7 +1,12 @@
 package com.user.service.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -30,7 +35,7 @@ public class BaseEntity implements Serializable {
 
     @CreatedDate
     @Column(name = "created_at")
-    protected LocalDateTime createdDate;
+    private LocalDateTime createdDate;
 
     @JsonIgnore
     @LastModifiedBy

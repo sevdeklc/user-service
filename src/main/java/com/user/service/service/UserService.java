@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private static final Logger log = LoggerFactory.getLogger(UserService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
 
@@ -25,11 +25,11 @@ public class UserService {
             User user = userMapper.userRequestToUser(userRequest);
             User savedUser = userRepository.save(user);
 
-            log.info("Successfully added user with ID: {}", savedUser.getId());
+            LOG.info("Successfully added user with ID: {}", savedUser.getId());
 
             return userMapper.userToUserDTO(savedUser);
         } catch (Exception e) {
-            log.error("Error while adding user", e);
+            LOG.error("Error while adding user", e);
             throw e;
         }
     }
