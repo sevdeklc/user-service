@@ -5,7 +5,6 @@ import com.user.service.domain.dto.response.UserResponse;
 import com.user.service.service.UserService;
 import com.user.service.util.api.ApiResponse;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<UserResponse> addUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userService.addUser(userRequest);
         return new ApiResponse<>(userResponse);
