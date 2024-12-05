@@ -9,7 +9,8 @@ Writing a microservice for performing user operations
 2. [Requirements](#requirements)
 3. [Database Configuration](#database-configuration)
 4. [Running the Application](#running-the-application)
-5. [Checkstyle](#checkstyle)
+5. [Run Swagger UI Documentation](#run-swagger-ui-documentation)
+6. [Checkstyle](#checkstyle)
 
 ## Tech Stack
 
@@ -51,6 +52,10 @@ The Application is running on port ```8080``` and can be run with the ```Applica
 ```shell
 mvn spring-boot:run
 ```
+
+## Run OpenAPI - Swagger UI Documentation
+
+After running the application, just type the  [Local URL for Swagger UI](http://localhost:8080/UserService/api/swagger-ui/index.html) in your browser.
 
 ## Checkstyle
 
