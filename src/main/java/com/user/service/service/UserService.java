@@ -4,13 +4,17 @@ import com.user.service.domain.dto.request.UserRequest;
 import com.user.service.domain.dto.response.UserResponse;
 import com.user.service.domain.entity.User;
 import com.user.service.domain.mapper.UserMapper;
+import com.user.service.exception.UserNotFoundException;
 import com.user.service.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -38,6 +42,28 @@ public class UserService {
             LOG.error("Error while adding user", e);
             throw e;
         }
+    }
+
+    @Transactional
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @Transactional
+    public UserResponse updateUser(Long userId, UserRequest userRequest) {
+        User existingUser = getUser(userId);
+        userMapper.updateUserFromRequest(userRequest, existingUser);
+        User updatedUser = userRepository.save(existingUser);
+        return userMapper.userToUserDTO(updatedUser);
+    }
+
+    private User getUser(Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isEmpty()) {
+            LOG.error("User with ID {} not found", userId);
+            throw new UserNotFoundException();
+        }
+        return optionalUser.get();
     }
 
 }
