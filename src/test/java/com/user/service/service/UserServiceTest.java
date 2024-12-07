@@ -19,8 +19,12 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -34,9 +38,11 @@ public class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
+    private static final int MAX_PAGESIZE = 10;
+
     @Test
     void testGetAllUsers() {
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(0, MAX_PAGESIZE);
         User user = new User();
         user.setId(1L);
         user.setFirstName("Test User");
@@ -137,7 +143,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testGetUser_Success() {
+    void testGetUserSuccess() {
         Long userId = 1L;
         User user = new User();
         user.setId(1L);
@@ -153,7 +159,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testGetUser_NotFound() {
+    void testGetUserNotFound() {
         Long userId = 1L;
 
         when(userRepository.findById(userId)).thenReturn(Optional.empty());

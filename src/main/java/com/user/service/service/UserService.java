@@ -30,6 +30,11 @@ public class UserService {
         return userRepository.findAll(pageable).map(userMapper::userToUserDTO);
     }
 
+    public UserResponse getUserByFirstName(String firstName) {
+        User user = userRepository.findUserByFirstName(firstName).orElseThrow(UserNotFoundException::new);
+        return userMapper.userToUserDTO(user);
+    }
+
     public UserResponse addUser(UserRequest userRequest) {
         try {
             User user = userMapper.userRequestToUser(userRequest);

@@ -42,6 +42,12 @@ public class UserController {
         return new ApiResponse<>(users);
     }
 
+    @GetMapping("/firstName/{firstName}")
+    public ApiResponse<UserResponse> getUserByFirstName(@PathVariable String firstName) {
+        UserResponse userResponse = userService.getUserByFirstName(firstName);
+        return new ApiResponse<>(userResponse);
+    }
+
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<UserResponse> addUser(@Valid @RequestBody UserRequest userRequest) {
         UserResponse userResponse = userService.addUser(userRequest);
