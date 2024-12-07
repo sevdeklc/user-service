@@ -64,3 +64,7 @@ If we run the ```mvn clean install``` command, it will scan the files for violat
 We can also run only the check goal of the plugin using ```mvn checkstyle:check```, without configuring the execution goal.
 
 Once the build finishes, the report is available in the target folder under the name checkstyle-result.xml
+
+## Actuator Address
+
+Address can be used to check the status of the service ```<host>/api/actuator/health```
