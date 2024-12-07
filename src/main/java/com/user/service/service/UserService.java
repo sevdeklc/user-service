@@ -57,7 +57,7 @@ public class UserService {
         return userMapper.userToUserDTO(updatedUser);
     }
 
-    private User getUser(Long userId) {
+    User getUser(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isEmpty()) {
             LOG.error("User with ID {} not found", userId);
